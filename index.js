@@ -22,6 +22,13 @@ async function getCities(){
     let longitud = city.lon;
     console.log("LATITUD LONGITUD", latitud, longitud)
     
-   
+    async function getWeather(){
+        const get = await fetch (`${base_API}?lat=${latitud}&lon=${longitud}&appid=${apiKeyClima}`)
+        const obteniendo = get.json()
+        const clima = obteniendo.main
+        console.log("API DEL CLIMA " , obteniendo)
+        
+        }
+        getWeather()
 }
 
