@@ -9,7 +9,7 @@ const ciudad = document.getElementById("ciudad")
 async function getCities(){
     const respt = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${ciudad.value}&limit=2&appid=${apiKey}`)
     const rta = await respt.json();
-    console.log(rta)
+    console.log("Data geolocalizacion ", rta)
 
     if(rta.length != 0){
         rta.forEach((i) => {
@@ -23,8 +23,8 @@ async function getCities(){
             const get = await fetch (`${base_API}?lat=${latitud}&lon=${longitud}&appid=${apiKey}&units=metric`)
             const obteniendo = await get.json()
             const clima = obteniendo.main
-            console.log("API DEL CLIMA " , obteniendo)
-            console.log("CLIMA " , clima)
+            console.log("Objeto Principal " , obteniendo)
+            console.log("Objeto clima " , clima)
 
         }
         getWeather()
