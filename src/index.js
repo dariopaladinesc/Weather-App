@@ -7,38 +7,38 @@ const inputCiudad = document.getElementById("ciudad")
 
 
 //API geolocalizacion para consumir latitud y longitud de c/ciudad
-async function getCities(){
+    async function getCities(){
     const respt = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${inputCiudad.value}&limit=2&appid=${apiKey}`)
     const rta = await respt.json();
     console.log("Data geolocalizacion ", rta)
     cards.innerHTML = " "
     if(rta.length != 0){
         rta.forEach((i) => {
-            const latitud = i.lat;
-            const longitud = i.lon;
-            createCityState(i)
-            getWeather(latitud, longitud) 
-          
+            let latitud = i.lat;
+            let longitud = i.lon;
+
+            //API para consumir el clima
+            async function getWeather(){
+            const get = await fetch (`${base_API}?lat=${latitud}&lon=${longitud}&appid=${apiKey}&units=metric`)
+            const obteniendo = await get.json()
+            const clima = obteniendo.main
+            console.log("Objeto principal", obteniendo)
+            console.log("Objeto Clima", clima)
+            createCard(obteniendo, i)
+            }
+            getWeather()
         }) 
     }else{
         console.log("no hubo ninguna coincidencia")
-    }   
-}
-
-
-//API para consumir el clima
-async function getWeather(lat, long){
-    const get = await fetch (`${base_API}?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`)
-    const obteniendo = await get.json()
-    const clima = obteniendo.main
-    console.log("Objeto principal", obteniendo)
-    console.log("Objeto Clima", clima)
-    createCard(obteniendo)
-   
+    }
     
 }
 
-function createCityState(arrayGeo){
+
+//Creando la cards del HTML
+ function createCard(arrayClima, arrayGeo){
+    const mainTemp = arrayClima.main;
+    
     principalCity = document.createElement("h2")
     principalCity.classList.add('city')
     principalCity.textContent = arrayGeo.name   
@@ -50,12 +50,8 @@ function createCityState(arrayGeo){
     cityContainer.classList.add('city-container')        
     cityContainer.append(principalCity, principalState)  
     
-    cards.appendChild(cityContainer)
-}
-//Creando la cards del HTML
- function createCard(arrayClima){
-    const mainTemp = arrayClima.main;
-    
+    //  cards.appendChild(cityContainer)
+
     const timeContainer = document.createElement('div')
     timeContainer.classList.add("time-container")
     const clock = document.createElement('div')
@@ -88,7 +84,7 @@ function createCityState(arrayGeo){
     descriptionContainer.append(sensation, description, speed, humidity)
     
 
-    cards.append(timeContainer, tempContainer, descriptionContainer)
+    cards.append(cityContainer, timeContainer, tempContainer, descriptionContainer)
 }
 
 
