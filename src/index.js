@@ -17,11 +17,14 @@ async function getCities(){
             const latitud = i.lat;
             const longitud = i.lon;
             getWeather(latitud, longitud) 
+            createCard(rta, callback)
           
         })      
     }else{
         console.log("no hubo ninguna coincidencia")
-    }   
+    }  
+    // callback(rta) 
+    console.log("ojalaaa", rta)
 }
 
 
@@ -31,38 +34,39 @@ async function getWeather(lat, long){
     const obteniendo = await get.json()
     const clima = obteniendo.main
     console.log("Objeto principal", obteniendo)
-    console.log("Objeto Clima", clima)
-    createCard(obteniendo)
-   
+    console.log("Objeto Clima", clima)   
     
 }
 
-async function getCityState(){
-    const respt = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${inputCiudad.value}&limit=2&appid=${apiKey}`)
-    const rta = await respt.json(); 
-    cityState(rta)
-}
 
+    function  callback(arrar){
+        let nameC;
+        let stateC;
+        let country
+        arrar.forEach(i => {
+            nameC = i.name;
+            stateC = i.state
+            country = i.country
+        })
+        principalCity = document.createElement("h2")
+        principalCity.classList.add('city')
+        principalCity.textContent = nameC.name   
+        principalState = document.createElement('h4')
+        principalState.classList.add('state')
+        principalState.textContent = `${stateC.state}, ${country.country}` 
+        cityContainer = document.createElement('div')
+        cityContainer.classList.add('city-container')        
+        cityContainer.append(principalCity, principalState)
 
-function cityState(arr){
-    console.log("ojalaaaaaaaa", arr)
+        cards.append(cityContainer)
+    }
+   
 
-    principalCity = document.createElement("h2")
-    principalCity.classList.add('city')
-    principalCity.textContent = nameC.name   
-    principalState = document.createElement('h4')
-    principalState.classList.add('state')
-    principalState.textContent = `${stateC.state}, ${stateC.country}` 
-    cityContainer = document.createElement('div')
-    cityContainer.classList.add('city-container')        
-    cityContainer.append(principalCity, principalState)
-    cards.appendChild(cityContainer)
-}
 //Creando la cards del HTML
- function createCard(arrayClima){
+ function createCard(arrayClima, callback){
     const mainTemp = arrayClima.main;
     
-    // getCityState()
+     callback()
 
     const timeContainer = document.createElement('div')
     timeContainer.classList.add("time-container")
@@ -96,8 +100,5 @@ function cityState(arr){
     descriptionContainer.append(sensation, description, speed, humidity)
     
 
-    cards.append( timeContainer, tempContainer, descriptionContainer)
+    cards.append(timeContainer, tempContainer, descriptionContainer)
 }
-
-
-
