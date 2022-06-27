@@ -9,32 +9,35 @@
 </head>
 <body>
     <header>
-        <h1>WEATHER APP</h1>
+        <h1>WEATHER APP <span>Hola</span></h1>
     </header>
     <main>
         <nav class="search-container">
-            <input type="text" id="ciudad"> 
-            <button  onclick="getCities()" id="buscar">Buscar</button>
+            <input type="text" id="ciudad" placeholder="Ingresa la ciudad"> 
+            <button  onclick="getCities()" id="buscar" >Buscar</button>
         </nav>
         <section class="card-container">
-            <div class="city-container">
-                <h2 class="city">Cuenca</h2>
-                <h4 class="state">Azuay</h4>
+            <div class="cards">   
+                <div class="city-container">
+                    <h2 class="city">Cuenca</h2>
+                    <h4 class="state">Azuay</h4>
+                </div>
+                <div class="time-container">
+                    <div class="clock">11:15</div>
+                    <img class="icon">Aqui va la foto</img>
+                </div>
+                <div class="temp-container">
+                    <h1 class="principal-temp">1°</h1>
+                    <p class="min-max_temp">1° / 4°</p>
+                </div>
+                <div class="descriptions-container">
+                    <p class="description-climate">Descripcion: Cielo despejado</p>
+                    <p class="feels-like">Sensación: 12°</p>
+                    <p class="speed">Velocidad: 15Km/h</p>
+                    <p class="humidity">Humedad: 70%</p>
+                </div>
             </div>
-            <div class="time-container">
-                <div class="clock">11:15</div>
-                <img class="icon">Aqui va la foto</img>
-            </div>
-            <div class="temp-container">
-                <h1 class="principal-temp">1°</h1>
-                <p class="min-max_temp">1° / 4°</p>
-            </div>
-            <div class="descriptions-container">
-                <p class="description-climate">Descripcion: Cielo despejado</p>
-                <p class="feels-like">Sensación: 12°</p>
-                <p class="speed">Velocidad: 15Km/h</p>
-                <p class="humidity">Humedad: 70%</p>
-            </div>
+            
         </section>
     </main>
     <script src="/src/nodes.js"></script>

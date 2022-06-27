@@ -38,6 +38,9 @@ var currentTime = new Date();
     const mainTemp = arrayClima.main;
     const descript = arrayClima.weather[0]
     const speedA = arrayClima.wind;
+    
+    const card = document.createElement("div")
+    card.classList.add ("cards")
 
     const principalCity = document.createElement("h2")
     principalCity.classList.add('city')
@@ -86,5 +89,6 @@ var currentTime = new Date();
     descriptionContainer.append(sensation, description, speed, humidity)
     
 
-    cards.append(cityContainer, timeContainer, tempContainer, descriptionContainer)
+    card.append(cityContainer, timeContainer, tempContainer, descriptionContainer)
+    cards.appendChild(card)
 }
