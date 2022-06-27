@@ -20,11 +20,9 @@ var rta
             //API para consumir el clima
             async function getWeather(){
             const get = await fetch (`${base_API}?lat=${latitud}&lon=${longitud}&appid=${apiKey}&units=metric`)
-            const obteniendo = await get.json()
-            const clima = obteniendo.main
-            console.log("Objeto principal", obteniendo)
-            console.log("Objeto Clima", clima)
-            createCard(obteniendo, i)
+            const climateArray = await get.json()
+            console.log("Objeto principal", climateArray)
+            createCard(climateArray, i)
             }
             getWeather()
         }) 
@@ -34,28 +32,28 @@ var rta
     
 }
 
-
+var currentTime = new Date();
 //Creando la cards del HTML
  function createCard(arrayClima, arrayGeo){
     const mainTemp = arrayClima.main;
-    
-    principalCity = document.createElement("h2")
+    const descript = arrayClima.weather[0]
+    const speedA = arrayClima.wind;
+
+    const principalCity = document.createElement("h2")
     principalCity.classList.add('city')
     principalCity.textContent = arrayGeo.name   
-    principalState = document.createElement('h4')
+    const principalState = document.createElement('h4')
     principalState.classList.add('state')
     principalState.textContent = `${arrayGeo.state}, ${arrayGeo.country}` 
-    
-    cityContainer = document.createElement('div')
+    const cityContainer = document.createElement('div')
     cityContainer.classList.add('city-container')        
     cityContainer.append(principalCity, principalState)  
     
- 
-
     const timeContainer = document.createElement('div')
     timeContainer.classList.add("time-container")
     const clock = document.createElement('div')
     clock.classList.add("clock")
+    clock.textContent = currentTime.toLocaleTimeString()
     const icon = document.createElement('img')
     icon.classList.add('icon')
     icon.setAttribute('src', '')
@@ -68,19 +66,23 @@ var rta
     temperature.textContent = Math.trunc(mainTemp.temp) + "°"
     const rangeTemp = document.createElement("p")
     rangeTemp.classList.add('min-max_temp')
-    rangeTemp.textContent = `${Math.trunc(mainTemp.temp_max)}° - ${Math.trunc(mainTemp.temp_min)}°`
+    rangeTemp.textContent = `Temp. max-min ${Math.trunc(mainTemp.temp_max)}°/${Math.trunc(mainTemp.temp_min)}°`
     tempContainer.append(temperature, rangeTemp)
 
     const descriptionContainer = document.createElement('div')
     descriptionContainer.classList.add('descriptions-container')
-    const sensation = document.createElement('p')
-    sensation.classList.add('feels-like')
     const description = document.createElement('p')
     description.classList.add("description-climate")
+    description.textContent = `Descripción: ${descript.description}`
+    const sensation = document.createElement('p')
+    sensation.classList.add('feels-like')
+    sensation.textContent = `Sensación de ${parseInt(mainTemp.feels_like)}°`
     const speed = document.createElement('p')
     speed.classList.add('speed')
+    speed.textContent = `Velocidad viento: ${parseInt(speedA.speed)*3.6}km/h` 
     const humidity = document.createElement('p')
     humidity.classList.add('humidity')
+    humidity.textContent = (`Humedad: ${mainTemp.humidity}%`)
     descriptionContainer.append(sensation, description, speed, humidity)
     
 
