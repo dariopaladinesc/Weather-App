@@ -16,21 +16,9 @@ async function getCities(){
         rta.forEach((i) => {
             const latitud = i.lat;
             const longitud = i.lon;
+            createCityState(i)
             getWeather(latitud, longitud) 
-
-            principalCity = document.createElement("h2")
-            principalCity.classList.add('city')
-            principalCity.textContent = i.name   
-
-            principalState = document.createElement('h4')
-            principalState.classList.add('state')
-            principalState.textContent = `${i.state},${i.country}`
-
-            cityContainer = document.createElement('div')
-            cityContainer.classList.add('city-container')        
-            cityContainer.append(principalCity, principalState)   
-            
-            cards.appendChild(cityContainer)
+          
         }) 
     }else{
         console.log("no hubo ninguna coincidencia")
@@ -43,18 +31,31 @@ async function getWeather(lat, long){
     const get = await fetch (`${base_API}?lat=${lat}&lon=${long}&appid=${apiKey}&units=metric`)
     const obteniendo = await get.json()
     const clima = obteniendo.main
-
-    createCard(obteniendo)  
-    console.log("Objeto Principal " , obteniendo)
-    console.log("Objeto clima " , clima)
-
+    console.log("Objeto principal", obteniendo)
+    console.log("Objeto Clima", clima)
+    createCard(obteniendo)
+   
+    
 }
 
-
+function createCityState(arrayGeo){
+    principalCity = document.createElement("h2")
+    principalCity.classList.add('city')
+    principalCity.textContent = arrayGeo.name   
+    principalState = document.createElement('h4')
+    principalState.classList.add('state')
+    principalState.textContent = `${arrayGeo.state}, ${arrayGeo.country}` 
+    
+    cityContainer = document.createElement('div')
+    cityContainer.classList.add('city-container')        
+    cityContainer.append(principalCity, principalState)  
+    
+    cards.appendChild(cityContainer)
+}
 //Creando la cards del HTML
- function createCard(arrayGeo){
-    // console.log("objeto en create cards " , arrayGeo)
-
+ function createCard(arrayClima){
+    const mainTemp = arrayClima.main;
+    
     const timeContainer = document.createElement('div')
     timeContainer.classList.add("time-container")
     const clock = document.createElement('div')
@@ -67,10 +68,11 @@ async function getWeather(lat, long){
     const tempContainer = document.createElement('div')
     tempContainer.classList.add('temp-container')
     const temperature = document.createElement('h1')
-    // temperature.textContent = temp.temp
     temperature.classList.add('principal-temp')
+    temperature.textContent = Math.trunc(mainTemp.temp) + "°"
     const rangeTemp = document.createElement("p")
     rangeTemp.classList.add('min-max_temp')
+    rangeTemp.textContent = `${Math.trunc(mainTemp.temp_max)}° - ${Math.trunc(mainTemp.temp_min)}°`
     tempContainer.append(temperature, rangeTemp)
 
     const descriptionContainer = document.createElement('div')
