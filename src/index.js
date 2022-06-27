@@ -5,21 +5,20 @@ const apiKey= '0b5d5d30a262ea49fab0b87b861d3f03'
 const inputCiudad = document.getElementById("ciudad")
 // cards.innerHTML = " "
 
-
+var rta
 //API geolocalizacion para consumir latitud y longitud de c/ciudad
 async function getCities(){
     const respt = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${inputCiudad.value}&limit=2&appid=${apiKey}`)
-    const rta = await respt.json();
+    rta = await respt.json();
     console.log("Data geolocalizacion ", rta)
     cards.innerHTML = " "
     if(rta.length != 0){
         rta.forEach((i) => {
             const latitud = i.lat;
             const longitud = i.lon;
-            createCityState(i)
             getWeather(latitud, longitud) 
           
-        }) 
+        })      
     }else{
         console.log("no hubo ninguna coincidencia")
     }   
@@ -38,24 +37,33 @@ async function getWeather(lat, long){
     
 }
 
-function createCityState(arrayGeo){
+async function getCityState(){
+    const respt = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${inputCiudad.value}&limit=2&appid=${apiKey}`)
+    const rta = await respt.json(); 
+    cityState(rta)
+}
+
+
+function cityState(arr){
+    console.log("ojalaaaaaaaa", arr)
+
     principalCity = document.createElement("h2")
     principalCity.classList.add('city')
-    principalCity.textContent = arrayGeo.name   
+    principalCity.textContent = nameC.name   
     principalState = document.createElement('h4')
     principalState.classList.add('state')
-    principalState.textContent = `${arrayGeo.state}, ${arrayGeo.country}` 
-    
+    principalState.textContent = `${stateC.state}, ${stateC.country}` 
     cityContainer = document.createElement('div')
     cityContainer.classList.add('city-container')        
-    cityContainer.append(principalCity, principalState)  
-    
+    cityContainer.append(principalCity, principalState)
     cards.appendChild(cityContainer)
 }
 //Creando la cards del HTML
  function createCard(arrayClima){
     const mainTemp = arrayClima.main;
     
+    // getCityState()
+
     const timeContainer = document.createElement('div')
     timeContainer.classList.add("time-container")
     const clock = document.createElement('div')
@@ -88,7 +96,8 @@ function createCityState(arrayGeo){
     descriptionContainer.append(sensation, description, speed, humidity)
     
 
-    cards.append(timeContainer, tempContainer, descriptionContainer)
+    cards.append( timeContainer, tempContainer, descriptionContainer)
 }
+
 
 
