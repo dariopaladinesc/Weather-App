@@ -15,9 +15,9 @@ En ésta aplicación se implementó:
 - ✨JAVASCRIPT ✨
 
 
-> Puedes ver la aplicación desplegada y funcionando aqui. [Weather App](https://platzi.com/cursos/dom/)
+> Puedes ver la aplicación desplegada y funcionando aqui. [Weather App](https://dariopaladinesc.github.io/Weather-App/)
 
 
 ## Others
 
-Esta es una aplicación resultante del curso de "Manipulación del DOM" en Platzi, lo puedes encontrar: [Aqui](https://dariopaladinesc.github.io/Weather-App/)
+Esta es una aplicación resultante del curso de "Manipulación del DOM" en Platzi, lo puedes encontrar: [Aqui](https://platzi.com/cursos/dom/)
