@@ -2,11 +2,10 @@
 const base_API = 'https://api.openweathermap.org/data/2.5/weather'
 const apiKey= '0b5d5d30a262ea49fab0b87b861d3f03'
 
-const inputCiudad = document.getElementById("ciudad")
+
 cards.innerHTML = " "
 
-
-
+// busqueda.addEventListener('submit', getCities())
 //API geolocalizacion para consumir latitud y longitud de c/ciudad
 var rta
     async function getCities(){
@@ -29,9 +28,9 @@ var rta
             getWeather()
         }) 
     }else{
-        console.log("no hubo ninguna coincidencia")
+        alert ("no se encontró ninguna ciudad")
     }
-    
+    footer2.classList.add("footer2")
 }
 
 
@@ -62,8 +61,9 @@ function createCard(arrayClima, arrayGeo){
     clock.textContent = currentTime.toLocaleTimeString()
     const icon = document.createElement('img')
     icon.classList.add('icon')
-    icon.setAttribute('src', '')
+    icon.setAttribute('src', '/pic.png')
     timeContainer.append(clock, icon)
+
 
     const tempContainer = document.createElement('div')
     tempContainer.classList.add('temp-container')
