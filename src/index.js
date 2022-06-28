@@ -3,10 +3,12 @@ const base_API = 'https://api.openweathermap.org/data/2.5/weather'
 const apiKey= '0b5d5d30a262ea49fab0b87b861d3f03'
 
 const inputCiudad = document.getElementById("ciudad")
-// cards.innerHTML = " "
+cards.innerHTML = " "
 
-var rta
+
+
 //API geolocalizacion para consumir latitud y longitud de c/ciudad
+var rta
     async function getCities(){
     const respt = await fetch (`http://api.openweathermap.org/geo/1.0/direct?q=${inputCiudad.value}&limit=2&appid=${apiKey}`)
     rta = await respt.json();
@@ -32,9 +34,10 @@ var rta
     
 }
 
-var currentTime = new Date();
+
 //Creando la cards del HTML
- function createCard(arrayClima, arrayGeo){
+var currentTime = new Date();
+function createCard(arrayClima, arrayGeo){
     const mainTemp = arrayClima.main;
     const descript = arrayClima.weather[0]
     const speedA = arrayClima.wind;
@@ -92,3 +95,11 @@ var currentTime = new Date();
     card.append(cityContainer, timeContainer, tempContainer, descriptionContainer)
     cards.appendChild(card)
 }
+
+
+//Create Nav & Footer
+
+const footerDescrpt = document.createElement('p')
+footerDescrpt.classList.add('footerName');
+footerDescrpt.textContent = ('Made with 💙 by: Dario Paladines C.')
+
