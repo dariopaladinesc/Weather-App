@@ -20,4 +20,4 @@ En ésta aplicación se implementó:
 
 ## Others
 
-Esta es una aplicación resultante del curso de "Manipulación del DOM" en Platzi, lo puedes encontrar: [Aqui](https://platzi.com/cursos/dom/)
+Esta es una aplicación resultante del curso de "Manipulación del DOM" en Platzi, lo puedes encontrar: [Aqui](https://dariopaladinesc.github.io/Weather-App/)
