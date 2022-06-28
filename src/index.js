@@ -11,6 +11,8 @@ enter.addEventListener("keydown", function(e){
     }
 })
 cards.innerHTML = " "
+error.innerHTML = " "
+
 
 //API geolocalizacion para consumir latitud y longitud de c/ciudad
 var rta
@@ -19,6 +21,7 @@ var rta
     rta = await respt.json();
     console.log("Data geolocalizacion ", rta)
     cards.innerHTML = " "
+    error.innerHTML = " "
     if(rta.length != 0){
         rta.forEach((i) => {
             let latitud = i.lat;
@@ -34,9 +37,11 @@ var rta
             getWeather()
         }) 
     }else{
-        alert ("no se encontró ninguna ciudad")
+        const msjError = document.createElement("p")
+        msjError.textContent = ("No se encontró ninguna ciudad 😥")
+        error.append(msjError)
     }
-    footer2.classList.add("footer2")
+    
 }
 
 
@@ -69,17 +74,16 @@ function createCard(arrayClima, arrayGeo){
     icon.classList.add('icon')
      if (descript.description.includes("clear") || descript.description.includes("sunny") == true){
         icon.setAttribute('src', 'https://i.ibb.co/sKWC1hL/sunny.png')
-    }else if(descript.description.includes("overcast") || (descript.description.includes("broken"))){
-        icon.setAttribute('src', 'https://i.ibb.co/mDyB33F/cloudly.png')
-    }else if(descript.description.includes("rain")){
-        icon.setAttribute('src', 'https://i.ibb.co/fr1nJLJ/rain.png')
     }else if( descript.description.includes("few clouds")) {
         icon.setAttribute('src', 'https://i.ibb.co/9hMpHYB/every.png')
+    }else if(descript.description.includes("rain")){
+        icon.setAttribute('src', 'https://i.ibb.co/fr1nJLJ/rain.png')
+    }else if(descript.description.includes("overcast") || (descript.description.includes("broken")) || (descript.description.includes("clouds"))){
+        icon.setAttribute('src', 'https://i.ibb.co/mDyB33F/cloudly.png')
+    }else if(descript.description.includes("thunderstorm")){
+        icon.setAttribute('src', 'https://i.ibb.co/7Q93d83/storm-jpg-removebg-preview.png')
     }
-       
-
     timeContainer.append(clock, icon)
-
 
     const tempContainer = document.createElement('div')
     tempContainer.classList.add('temp-container')
@@ -112,10 +116,4 @@ function createCard(arrayClima, arrayGeo){
     cards.appendChild(card)
 }
 
-
-//Create Nav & Footer
-
-const footerDescrpt = document.createElement('p')
-footerDescrpt.classList.add('footerName');
-footerDescrpt.textContent = ('Made with 💙 by: Dario Paladines C.')
 

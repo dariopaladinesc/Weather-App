@@ -138,6 +138,12 @@ header h1 img{
     justify-items: center;
 }
 
+.error p{
+    margin-left: 20px;
+    font-size: 1.8rem;
+    color: red;
+    font-weight: 700;
+}
 .card-container .cards{
     border: 2px solid var(--secondary-color-hard);
     width: 65%;
