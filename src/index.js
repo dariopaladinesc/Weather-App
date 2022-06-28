@@ -3,9 +3,15 @@ const base_API = 'https://api.openweathermap.org/data/2.5/weather'
 const apiKey= '0b5d5d30a262ea49fab0b87b861d3f03'
 
 
+//Evento con teclado
+const enter = document.getElementById("ciudad")
+enter.addEventListener("keydown", function(e){
+    if(e.keyCode ===13){
+        getCities()
+    }
+})
 cards.innerHTML = " "
 
-// busqueda.addEventListener('submit', getCities())
 //API geolocalizacion para consumir latitud y longitud de c/ciudad
 var rta
     async function getCities(){
@@ -63,7 +69,7 @@ function createCard(arrayClima, arrayGeo){
     icon.classList.add('icon')
      if (descript.description.includes("clear") || descript.description.includes("sunny") == true){
         icon.setAttribute('src', 'https://i.ibb.co/sKWC1hL/sunny.png')
-    }else if(descript.description.includes("overcast")){
+    }else if(descript.description.includes("overcast") || (descript.description.includes("broken"))){
         icon.setAttribute('src', 'https://i.ibb.co/mDyB33F/cloudly.png')
     }else if(descript.description.includes("rain")){
         icon.setAttribute('src', 'https://i.ibb.co/fr1nJLJ/rain.png')

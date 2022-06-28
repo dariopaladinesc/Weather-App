@@ -55,6 +55,7 @@ header h1 img{
     width: 60px;
     height: 60px;
 }
+
 .search-container{
     margin: 40px 0px;
 }
@@ -68,6 +69,7 @@ header h1 img{
     font-size: 1.6rem;
     color: var(--secondary-color-hard) ;
     outline: none;
+    padding-left: 10px;
 }
 #ciudad:focus{
     border: 1px solid var(--secondary-color-hard);
@@ -131,6 +133,12 @@ header h1 img{
     margin: 5px 0px;
     color: var(--hard-blue);
     font-weight: 500;
+    background-color: #cdcdcd4b;
+    height: 30px;
+    /* padding-top: 5px; */
+    padding: 5px 3px;
+    border-radius: 15px;
+    width: 100%;
 }
 
 .descriptions-container{
@@ -146,8 +154,10 @@ footer{
     text-align: center;
     padding-top: 5px;
     color: white;
-
+    box-shadow: 0px 0px 10px 5px #070707;
 }
+
+
 footer p{
     color: var(--secondary-color-hard);
 }
@@ -156,4 +166,5 @@ footer p{
     width: 60px;
     height: 60px;
     justify-self: center;
+    margin-left: 35px;
 }
