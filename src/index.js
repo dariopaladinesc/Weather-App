@@ -61,7 +61,17 @@ function createCard(arrayClima, arrayGeo){
     clock.textContent = currentTime.toLocaleTimeString()
     const icon = document.createElement('img')
     icon.classList.add('icon')
-    icon.setAttribute('src', '/pic.png')
+     if (descript.description.includes("clear") || descript.description.includes("sunny") == true){
+        icon.setAttribute('src', 'https://i.ibb.co/sKWC1hL/sunny.png')
+    }else if(descript.description.includes("overcast")){
+        icon.setAttribute('src', 'https://i.ibb.co/mDyB33F/cloudly.png')
+    }else if(descript.description.includes("rain")){
+        icon.setAttribute('src', 'https://i.ibb.co/fr1nJLJ/rain.png')
+    }else if( descript.description.includes("few clouds")) {
+        icon.setAttribute('src', 'https://i.ibb.co/9hMpHYB/every.png')
+    }
+       
+
     timeContainer.append(clock, icon)
 
 
