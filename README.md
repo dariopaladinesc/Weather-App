@@ -18,6 +18,6 @@ En ésta aplicación se implementó:
 > Puedes ver la aplicación desplegada y funcionando aqui. [Weather App](https://platzi.com/cursos/dom/)
 
 
-> ## Others
+## Others
 
 > Esta es una aplicación resultante del curso de "Manipulación del DOM" en Platzi, lo puedes encontrar: [Aqui](https://platzi.com/cursos/dom/)
