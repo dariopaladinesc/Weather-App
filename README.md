@@ -15,7 +15,7 @@ En ésta aplicación se implementó:
 - ✨JAVASCRIPT ✨
 
 
-> Puedes ver la aplicación desplegada y funcionando aqui. [Weather App](https://platzi.com/cursos/dom/)
+> Puedes ver la aplicación desplegada y funcionando aqui. [Weather App](https://dariopaladinesc.github.io/Weather-App/)
 
 
 ## Others
