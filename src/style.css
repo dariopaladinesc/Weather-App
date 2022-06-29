@@ -48,6 +48,7 @@ p{
     font-size: 1.6rem;
     margin:5px 0px;
     color: var(--hard-blue);
+    text-align: center;
 }
 .nav-container{
     display: flex;
