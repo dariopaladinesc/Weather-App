@@ -10,6 +10,8 @@ enter.addEventListener("keydown", function(e){
         getCities()
     }
 })
+const busquedaFF = document.getElementById("buscar")
+busquedaFF.addEventListener("click", getCities)
 cards.innerHTML = " "
 error.innerHTML = " "
 
